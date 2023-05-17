@@ -8,8 +8,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.example.trabalho2.R;
 import com.example.trabalho2.database.LocalDatabase;
@@ -22,12 +24,13 @@ import java.util.List;
 public class Aluno_Activity extends AppCompatActivity {
 
     Aluno aluno;
-    Curso curso = new Curso();
     Button btn_salvar, btn_voltar, btn_cadastrarCurso;
     private LocalDatabase db;
     Spinner spinner;
-
     TextInputEditText input_nomeAluno, input_emailAluno, input_telefoneAluno;
+
+
+
 
 
     @Override
@@ -42,6 +45,8 @@ public class Aluno_Activity extends AppCompatActivity {
         btn_salvar = findViewById(R.id.btn_salvar);
         btn_voltar = findViewById(R.id.btn_home);
         btn_cadastrarCurso = findViewById(R.id.btn_cadastrarCurso);
+
+
 
 
         //Conexão com o Banco De Dados
@@ -126,7 +131,13 @@ public class Aluno_Activity extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
+
     }
+
+
 
     public boolean verificaPreenchimento() {
         String texto = input_nomeAluno.getText().toString().trim();

@@ -15,4 +15,6 @@
     <string name="exclui">Excluir</string>
     <string name="erro_preenchimento">Erro no preenchimento dos campos</string>
     <string name="selecione_curso_disponivel">Selecione um curso disponível</string>
+    <string name="valorIdCurso">Gerar código curso automaticamente?</string>
+    <string name="sim">Sim</string>
 </resources>

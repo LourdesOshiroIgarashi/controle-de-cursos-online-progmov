@@ -55,4 +55,10 @@ public interface AlunoDao {
     @Query("SELECT AlunoId FROM Aluno WHERE nomeAluno = :nome LIMIT 1")
     int getIdAluno(String nome);
 
+    @Query("UPDATE aluno SET nomeAluno = :nome, emailAluno = :email, telefoneAluno = :tel WHERE alunoId = :id")
+    void updateAluno(int id, String nome, String email, String tel);
+
+
+    @Query("SELECT * FROM Aluno WHERE alunoId = :id LIMIT 1")
+    Aluno instancia(int id);
 }

@@ -2,6 +2,7 @@ package com.example.trabalho2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -22,7 +23,7 @@ public class ListaCurso_Activity extends AppCompatActivity {
 
 
     private LocalDatabase db;
-    Button btnVoltar, btnExcluir;
+    Button btnVoltar, btnExcluir, btn_editarCurso;
     Spinner spinner;
 
     int idCursoSelecionadoParaExcluir;
@@ -53,6 +54,7 @@ public class ListaCurso_Activity extends AppCompatActivity {
         //conecta o botão de voltar com o código JAVA, que desempilha a activity na pilha
         btnVoltar = findViewById(R.id.btnVoltarLC);
         btnExcluir = findViewById(R.id.btn_excluirCurso);
+        btn_editarCurso = findViewById(R.id.btn_editarCurso);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -67,6 +69,18 @@ public class ListaCurso_Activity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 Toast.makeText(getApplicationContext(), "Escolha um curso para alguma ação!", Toast.LENGTH_LONG).show();
                 //Nenhum Item selecionado
+            }
+        });
+        btn_editarCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), EditarCurso.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("idCurso", String.valueOf(idCursoSelecionadoParaExcluir));
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+
             }
         });
 
