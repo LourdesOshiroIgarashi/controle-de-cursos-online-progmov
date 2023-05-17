@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Trabalho 2</string>
+    <string name="aluno">Aluno</string>
+    <string name="curso">Curso</string>
+    <string name="cadastro">Cadastro</string>
+    <string name="visualizar">Alunos cadastrados</string>
+    <string name="visualize_cursos">Cursos cadastrados</string>
+    <string name="home">Voltar</string>
+    <string name="nome">Nome completo</string>
+    <string name="telefone">Telefone</string>
+    <string name="email">E-mail</string>
+    <string name="nome_curso">Nome do Curso</string>
+    <string name="qtd_horas">Carga Horária do Curso</string>
+    <string name="salva">Salvar</string>
+    <string name="exclui">Excluir</string>
+    <string name="erro_preenchimento">Erro no preenchimento dos campos</string>
+    <string name="selecione_curso_disponivel">Selecione um curso disponível</string>
+</resources>
