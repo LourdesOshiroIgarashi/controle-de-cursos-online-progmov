@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ToggleButton;
 
 import com.example.trabalho2.R;
 import com.example.trabalho2.database.LocalDatabase;
@@ -18,7 +19,10 @@ public class EditarCurso extends AppCompatActivity {
 
     Button btn_salvarCurso, buttonVoltarC;
 
+
+
     LocalDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,7 @@ public class EditarCurso extends AppCompatActivity {
 
 
 
+
         Bundle bundle = getIntent().getExtras();
         String valor = bundle.getString("idCurso");
         int idB = Integer.parseInt(valor);
@@ -48,6 +53,9 @@ public class EditarCurso extends AppCompatActivity {
         String horasS = String.valueOf(horas);
         input_cargaHorariaCurso.setText(horasS);
         input_nomeCurso.setText(dao.getNomeCurso());
+
+
+
 
 
 
@@ -65,9 +73,10 @@ public class EditarCurso extends AppCompatActivity {
                 String nomeC = input_nomeCurso.getText().toString();
                 String ch = input_cargaHorariaCurso.getText().toString();
                 int chInt = Integer.parseInt(ch);
-
                 db.cursoDao().updateCurso(idB, nomeC, chInt);
                 finish();
+
+
 
             }
         });

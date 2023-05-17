@@ -87,7 +87,7 @@ public class VisualizadorDados extends AppCompatActivity {
 
             //
             int qtdHoras = cursoX.getQtdHoras();
-            String cursoFormatado = cursoX.getNomeCurso() + " - " + qtdHoras;
+            String cursoFormatado = cursoX.getNomeCurso() + " - " + qtdHoras + " horas";
             cursosFormatados.add(cursoFormatado);
         }
         ArrayAdapter<String> adapterCurso = new ArrayAdapter<String>(

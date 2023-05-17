@@ -59,4 +59,6 @@ public interface CursoDao {
     @Query("UPDATE curso SET nomeCurso = :nome, qtdHoras = :horas WHERE cursoId = :id")
     void updateCurso(int id, String nome, int horas);
 
+
+
 }
