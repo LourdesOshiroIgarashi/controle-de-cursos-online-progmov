@@ -1,0 +1,103 @@
+package com.example.trabalho2.view;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.example.trabalho2.R;
+import com.example.trabalho2.dao.AlunoDao;
+import com.example.trabalho2.database.LocalDatabase;
+import com.example.trabalho2.entity.Aluno;
+import com.example.trabalho2.entity.AlunoCurso;
+import com.example.trabalho2.entity.Curso;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ListaAluno_Activity extends AppCompatActivity {
+    private LocalDatabase db;
+    Button btnVoltar, btnExcluir;
+    Spinner spinner;
+
+    int idAlunoSelecionadoParaExcluir;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_lista_aluno);
+
+
+        //Conexão com o banco de dados
+        db = LocalDatabase.getDataBase(getApplicationContext());
+
+
+        //recupera do banco de dados todos os alunos cadastrados e devolve em uma lista
+        List<AlunoCurso> alunos = db.alunoDao().getAlunoCompleto();
+
+        List<String> alunosFormatados = new ArrayList<>();
+        for (AlunoCurso aluno : alunos) {
+            String alunoFormatado = aluno.nomeAluno + " - " + aluno.nomeCurso;
+            alunosFormatados.add(alunoFormatado);
+        }
+
+        /*
+        List<String> alunosFormatados = new ArrayList<>();
+         for (AlunoCursoDao alunoX : aluno) {
+            AlunoCursoDao alunoFormatado = alunoX.getNomeAluno() + " - " + alunoX.getNomeCursoAluno();
+            aluno.add(alunoFormatado);
+        }*/
+
+        //cria um adaptador para poder visualizar os alunos de uma forma mais amigável e personalizada
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, alunosFormatados);
+
+
+        //Conecta o spinner com o código JAVA
+        spinner = findViewById(R.id.spinnerAluno);
+
+        //Adiciona no visualizador do spinner passando o adaptador para ser visualizado no spinner
+        spinner.setAdapter(adapter);
+
+        //Conecta o botão de voltar, que desempilha a activity na pilha
+        btnVoltar = findViewById(R.id.btnVoltarVA);
+        btnExcluir = findViewById(R.id.btn_excluirAluno);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String alunoSelecionado = (String) parent.getItemAtPosition(position);
+                AlunoDao dao = db.alunoDao();
+                idAlunoSelecionadoParaExcluir = dao.getIdAluno(alunoSelecionado);
+                dao.deleteAlunoById(idAlunoSelecionadoParaExcluir);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        btnVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlunoDao dao = db.alunoDao();
+                dao.deleteAlunoById(idAlunoSelecionadoParaExcluir);
+                recreate();
+            }
+        });
+    }
+}
