@@ -44,6 +44,7 @@ public class Aluno_Activity extends AppCompatActivity {
         btn_cadastrarCurso = findViewById(R.id.btn_cadastrarCurso);
 
 
+
         //Conexão com o Banco De Dados
         db = LocalDatabase.getDataBase(getApplicationContext());
 
@@ -126,7 +127,11 @@ public class Aluno_Activity extends AppCompatActivity {
                 finish();
             }
         });
+
+
     }
+
+
 
     public boolean verificaPreenchimento() {
         String texto = input_nomeAluno.getText().toString().trim();

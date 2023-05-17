@@ -67,10 +67,13 @@ public class VisualizadorDados extends AppCompatActivity {
                 alunosFormatados
         );
 
+        listViewAluno.setAdapter(adapterAluno);
+
+
         //Recupera todos os cursos no banco de dados
         List<Curso> cursos = db.cursoDao().todosCursos();
 
-        listViewAluno.setAdapter(adapterAluno);
+
 
 
         //Cria uma Lista de String para Formatar dados
@@ -85,7 +88,7 @@ public class VisualizadorDados extends AppCompatActivity {
             //
             int qtdHoras = cursoX.getQtdHoras();
             String cursoFormatado = cursoX.getNomeCurso() + " - " + qtdHoras;
-            alunosFormatados.add(cursoFormatado);
+            cursosFormatados.add(cursoFormatado);
         }
         ArrayAdapter<String> adapterCurso = new ArrayAdapter<String>(
                 getApplicationContext(),
@@ -93,6 +96,8 @@ public class VisualizadorDados extends AppCompatActivity {
                 android.R.id.text1,
                 cursosFormatados
         );
+
+
 
 
         listViewCurso.setAdapter(adapterCurso);

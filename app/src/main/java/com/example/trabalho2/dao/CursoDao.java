@@ -53,5 +53,10 @@ public interface CursoDao {
     @Query("SELECT * FROM Curso")
     List<Curso> todosCursos();
 
+    @Query("SELECT * FROM Curso WHERE cursoId = :id LIMIT 1")
+    Curso instancia(int id);
+
+    @Query("UPDATE curso SET nomeCurso = :nome, qtdHoras = :horas WHERE cursoId = :id")
+    void updateCurso(int id, String nome, int horas);
 
 }

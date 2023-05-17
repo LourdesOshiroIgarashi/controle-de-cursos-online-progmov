@@ -2,6 +2,7 @@ package com.example.trabalho2.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,7 +19,7 @@ import java.util.List;
 
 public class ListaAluno_Activity extends AppCompatActivity {
     private LocalDatabase db;
-    Button btnVoltar, btnExcluir;
+    Button btnVoltar, btnExcluir, btn_editarCurso;
     Spinner spinner;
 
     int idAlunoSelecionadoParaExcluir;
@@ -35,7 +36,7 @@ public class ListaAluno_Activity extends AppCompatActivity {
 
 
         //recupera do banco de dados todos os alunos cadastrados e devolve em uma lista
-        List<Aluno> alunos = db.alunoDao().getAlunoCompleto();
+        //List<Aluno> alunos = db.alunoDao().getAlunoCompleto();
 
         List<String> aluno = db.alunoDao().nomeAlunoL();
 
@@ -61,6 +62,7 @@ public class ListaAluno_Activity extends AppCompatActivity {
         //Conecta o botão de voltar, que desempilha a activity na pilha
         btnVoltar = findViewById(R.id.btnVoltarVA);
         btnExcluir = findViewById(R.id.btn_excluirAluno);
+        btn_editarCurso = findViewById(R.id.btn_editarCurso);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -74,6 +76,19 @@ public class ListaAluno_Activity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+
+        btn_editarCurso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), EditarAluno.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("idAluno", String.valueOf(idAlunoSelecionadoParaExcluir));
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
             }
         });
 
