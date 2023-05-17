@@ -41,11 +41,8 @@ public class ListaAluno_Activity extends AppCompatActivity {
         //recupera do banco de dados todos os alunos cadastrados e devolve em uma lista
         List<AlunoCurso> alunos = db.alunoDao().getAlunoCompleto();
 
-        List<String> alunosFormatados = new ArrayList<>();
-        for (AlunoCurso aluno : alunos) {
-            String alunoFormatado = aluno.nomeAluno + " - " + aluno.nomeCurso;
-            alunosFormatados.add(alunoFormatado);
-        }
+        List<String> aluno = db.alunoDao().nomeAlunoL();
+
 
         /*
         List<String> alunosFormatados = new ArrayList<>();
@@ -56,7 +53,7 @@ public class ListaAluno_Activity extends AppCompatActivity {
 
         //cria um adaptador para poder visualizar os alunos de uma forma mais amigável e personalizada
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, alunosFormatados);
+                android.R.layout.simple_spinner_dropdown_item, aluno);
 
 
         //Conecta o spinner com o código JAVA
@@ -73,9 +70,9 @@ public class ListaAluno_Activity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String alunoSelecionado = (String) parent.getItemAtPosition(position);
+                System.out.println("ALUNOSELECIONADO"+ alunoSelecionado);
                 AlunoDao dao = db.alunoDao();
                 idAlunoSelecionadoParaExcluir = dao.getIdAluno(alunoSelecionado);
-                dao.deleteAlunoById(idAlunoSelecionadoParaExcluir);
             }
 
             @Override
