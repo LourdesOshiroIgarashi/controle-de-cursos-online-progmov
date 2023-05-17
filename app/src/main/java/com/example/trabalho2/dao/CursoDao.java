@@ -52,4 +52,6 @@ public interface CursoDao {
 
     @Query("SELECT * FROM Curso")
     List<Curso> todosCursos();
+
+
 }
