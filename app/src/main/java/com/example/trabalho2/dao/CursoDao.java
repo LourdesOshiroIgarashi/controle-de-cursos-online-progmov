@@ -18,6 +18,9 @@ public interface CursoDao {
     @Query("SELECT * FROM Curso WHERE cursoId = :id LIMIT 1")
     Curso getId(int id);
 
+    @Query("SELECT nomeCurso FROM Curso WHERE cursoId = :id LIMIT 1")
+    String getNomeCurso(int id);
+
     //buscar todos os cursos
     @Query("SELECT * FROM Curso")
     List<Curso> getAll();

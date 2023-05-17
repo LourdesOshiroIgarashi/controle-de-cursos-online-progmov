@@ -1,5 +1,7 @@
 package com.example.trabalho2.dao;
 
+import android.icu.text.SymbolTable;
+
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -7,8 +9,6 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.trabalho2.entity.Aluno;
-import com.example.trabalho2.entity.AlunoCurso;
-import com.example.trabalho2.entity.Curso;
 
 import java.util.List;
 
@@ -22,8 +22,7 @@ public interface AlunoDao {
     @Query("SELECT * FROM Aluno")
     List<Aluno> getAll();
 
-    @Query("SELECT * FROM Aluno")
-    List<Aluno> todosAlunos();
+
 
     @Query("SELECT nomeAluno FROM Aluno")
     List<String> nomeAlunoL();
@@ -32,8 +31,8 @@ public interface AlunoDao {
     @Insert
     void insertAll(Aluno... alunos);
 
-    @Query("SELECT Aluno.nomeAluno, Curso.nomeCurso FROM Aluno INNER JOIN Curso ON Aluno.cursoId = Curso.cursoId")
-    List<AlunoCurso> getAlunoCompleto();
+    @Query("SELECT * FROM Aluno")
+    List<Aluno> getAlunoCompleto();
 
 
     //inserir no banco de dados um único aluno

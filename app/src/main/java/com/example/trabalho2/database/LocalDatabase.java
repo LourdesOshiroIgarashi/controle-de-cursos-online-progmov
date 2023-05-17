@@ -39,4 +39,5 @@ public abstract class LocalDatabase extends RoomDatabase {
 
     public abstract CursoDao cursoDao();
 
+
 }

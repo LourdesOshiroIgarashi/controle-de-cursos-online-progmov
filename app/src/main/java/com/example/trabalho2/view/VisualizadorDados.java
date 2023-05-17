@@ -13,6 +13,7 @@ import com.example.trabalho2.database.LocalDatabase;
 import com.example.trabalho2.entity.Aluno;
 import com.example.trabalho2.entity.Curso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VisualizadorDados extends AppCompatActivity {
@@ -32,14 +33,25 @@ public class VisualizadorDados extends AppCompatActivity {
         db = LocalDatabase.getDataBase(getApplicationContext());
 
 
-        List<Aluno> alunos = db.alunoDao().todosAlunos();
+        List<Aluno> alunos = db.alunoDao().getAlunoCompleto();
+
+        List<String> alunosFormatados = new ArrayList<String>();
+        for (Aluno alunoX : alunos) {
+
+            int idCurso = alunoX.getCursiId();
+
+            String nomeDoCurso = db.cursoDao().getNomeCurso(idCurso);
+            String alunoFormatado = alunoX.getNomeAluno() + " - " + nomeDoCurso;
+            alunosFormatados.add(alunoFormatado);
+        }
 
 
-        ArrayAdapter<Aluno> adapterAluno = new ArrayAdapter<Aluno>(
+
+        ArrayAdapter<String> adapterAluno = new ArrayAdapter<String>(
                 getApplicationContext(),
                 android.R.layout.simple_list_item_1,
                 android.R.id.text1,
-                alunos
+                alunosFormatados
         );
 
         List<Curso> cursos = db.cursoDao().todosCursos();

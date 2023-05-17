@@ -8,16 +8,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.trabalho2.R;
 import com.example.trabalho2.dao.AlunoDao;
 import com.example.trabalho2.database.LocalDatabase;
 import com.example.trabalho2.entity.Aluno;
-import com.example.trabalho2.entity.AlunoCurso;
-import com.example.trabalho2.entity.Curso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListaAluno_Activity extends AppCompatActivity {
@@ -39,7 +35,7 @@ public class ListaAluno_Activity extends AppCompatActivity {
 
 
         //recupera do banco de dados todos os alunos cadastrados e devolve em uma lista
-        List<AlunoCurso> alunos = db.alunoDao().getAlunoCompleto();
+        List<Aluno> alunos = db.alunoDao().getAlunoCompleto();
 
         List<String> aluno = db.alunoDao().nomeAlunoL();
 
